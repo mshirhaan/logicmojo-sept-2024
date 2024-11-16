@@ -3,40 +3,32 @@ class Solution {
             if(root == null) {
                 return null;
             }
-        if(root.val == key) {
-            if(root.left ==null && root.right ==null) {
-                return null;
-            }
-            if(root.left ==null) {
-                return root.right;
-            }
-            if(root.right == null) {
-                return root.left;
-            }
-            helper(root.right, root.left);
-            return root.left;
-        }
-        //find the parent
-        TreeNode current = root;
-        
-        while(true) {
-            if(current == null) {
-                break;
-            }
+
+            //find the parent
+            TreeNode current = root;
             
-            if(current.left !=null && current.left.val == key) {
-                current.left = newChild(current.left);
-                break;
-            } else if(current.right != null && current.right.val == key) {
-                current.right = newChild(current.right);
-                break;
-            } else if(key > current.val) {
-                current = current.right;
-            } else {
-                current = current.left;
+            while(true) {
+                if(current == null) {
+                    break;
+                }
+                if(current.val == key) {
+                    root = newChild(current);
+                    break;
+                }
+                
+                if(current.left !=null && current.left.val == key) {
+                    current.left = newChild(current.left);
+                    break;
+                } else if(current.right != null && current.right.val == key) {
+                    current.right = newChild(current.right);
+                    break;
+                } else if(key > current.val) {
+                    current = current.right;
+                } else {
+                    current = current.left;
+                }
             }
-        }
-        return root;
+            return root;
     }
 
     public TreeNode newChild(TreeNode root) {
