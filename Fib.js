@@ -1,4 +1,4 @@
-TC Top down approach exponential O(2^n), SC: O(n) which is for call stack space
+Top down approach exponential, TC: O(2^n), SC: O(n) which is for call stack space
 function fib(n) {
     if(n < 2) {
         return n;
